@@ -7,8 +7,10 @@ use Nette\SmartObject;
 
 class HomepagePresenter extends BasePresenter
 {
+
     use SmartObject;
-    public function createComponentResetPassword()
+
+    public function createComponentResetPassword(): Form
     {
         $form = new Form();
         $form->addProtection('Vaše relace vypršela. Prosím, zkuste to znovu.');
@@ -26,4 +28,5 @@ class HomepagePresenter extends BasePresenter
         };
         return $form;
     }
+
 }

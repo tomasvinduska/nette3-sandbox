@@ -2,20 +2,7 @@
 
 namespace App\Presenters;
 
-use App\CheckoutModule\Components\CartComponent;
-use App\CheckoutModule\Components\IDeliveryDateFactory;
-use App\Components\CategoryComponent;
-use App\Components\SignFormComponent;
-use App\Forms\BsConfig;
-use App\Forms\SignFormFactory;
-use JShrink\Minifier;
-use Libs\User\Entity\User;
-use Libs\ZipCode\ZipCode;
-use Nette\Application\UI\Form;
 use Nette\DI\Container;
-use Tracy\Debugger;
-use WebLoader\Nette\CssLoader;
-use WebLoader\Nette\JavaScriptLoader;
 
 /**
  * Base presenter for all application presenters.
@@ -24,6 +11,7 @@ use WebLoader\Nette\JavaScriptLoader;
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {
+
     /** @var string $theme */
     private $theme = 'Default';
 

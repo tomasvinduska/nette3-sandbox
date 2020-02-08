@@ -16,7 +16,7 @@ class Bootstrap
 
     public static function boot(): Configurator
     {
-        $configurator = new Configurator;
+        $configurator = new Configurator();
 
         if (PHP_SAPI === 'cli') {
             $configurator->setDebugMode(true);
@@ -56,4 +56,5 @@ class Bootstrap
 
         return $configurator;
     }
+
 }
