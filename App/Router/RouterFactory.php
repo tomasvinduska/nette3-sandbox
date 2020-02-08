@@ -13,7 +13,7 @@ final class RouterFactory
     public static function createRouter(): RouteList
     {
         $router = new RouteList();
-        $router->addRoute('/obnova-hesla', 'Homepage:reset');
+        $router->addRoute('/obnova-hesla', 'Sign:resetPassword');
         $router->addRoute('<presenter>/<action>', 'Homepage:default');
         return $router;
     }
