@@ -1,0 +1,62 @@
+parameters:
+
+application:
+	errorPresenter: Error
+	scanDirs: false
+	scanComposer: false
+	#catchExceptions: true
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+nettrine.orm:
+  configuration:
+    autoGenerateProxyClasses: %debugMode%
+
+nettrine.dbal:
+  debug:
+    panel: %debugMode%
+    sourcePaths: [%appDir%]
+  connection:
+    host: ::getenv(MYSQL_HOST)
+    driver: pdo_mysqli
+    dbname: ::getenv(MYSQL_DATABSE)
+    user: ::getenv(MYSQL_USER)
+    password: ::getenv(MYSQL_PASSWORD)
+
+migrations:
+    table: doctrine_migrations # database table for applied migrations
+    column: version # database column for applied migrations
+    directory: %appDir%/../Migrations # directory, where all migrations are stored
+    namespace: Migrations # namespace of migration classes
+    versionsOrganization: "year_and_month" # null, "year" or "year_and_month", organizes migrations to subdirectories
+
+mail:
+    smtp: true
+#    smtp: ::getenv('MAIL_SMTP')
+    host: ::getenv('MAIL_HOST')
+    port: ::getenv('MAIL_PORT')
+    username: ::getenv('MAIL_USERNAME')
+    password: ::getenv('MAIL_PASSWORD')
+    secure: ::getenv('MAIL_SECURE')
+
+decorator:
+    Kdyby\Events\Subscriber:
+        tags: [kdyby.subscriber]
+    Symfony\Component\Console\Command\Command:
+        tags: [kdyby.console.command]
+
+session:
+	expiration: 14 days
+	autoStart: true
+
+http:
+    headers:
+        X-Powered-By: false
+#monolog:
+#    channel:
+#        default:
+#            handlers:
+
+includes:
+	- extensions.neon
+	- services.neon

@@ -1,0 +1,8 @@
+extensions:
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+    nettrine.dbal: Nettrine\DBAL\DI\DbalExtension
+    nettrine.cache: Nettrine\Cache\DI\CacheExtension
+    nettrine.orm: Nettrine\ORM\DI\OrmExtension
+    migrations: Nettrine\Migrations\DI\MigrationsExtension
+#    monolog: Contributte\Monolog\DI\MonologExtension
+

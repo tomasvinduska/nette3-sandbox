@@ -1,0 +1,70 @@
+version: "3.2"
+services:
+  php:
+    build:
+      context: './php/'
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+    networks:
+      - backend
+    volumes:
+      - ../:/var/www/web/:cached
+    container_name: "${PHP_NAME}"
+    environment:
+      COMPOSER_MEMORY_LIMIT: "${COMPOSER_MEMORY_LIMIT}"
+      MAIL_SMTP: ${MAIL_SMTP}
+      MAIL_HOST: "${MAIL_HOST}"
+      MAIL_PORT: "${MAIL_PORT}"
+      MAIL_USERNAME: "${MAIL_USERNAME}"
+      MAIL_PASSWORD: "${MAIL_PASSWORD}"
+      MAIL_SECURE: "${MAIL_SECURE}"
+
+  nginx:
+    image: nginx:${NGINX_VERSION:-latest}
+    depends_on:
+      - php
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - ../:/var/www/web/:cached
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:cached
+    ports:
+      - "80:80"
+    container_name: "${NGINX_NAME}"
+
+  mysql:
+    image: percona:${MYSQL_VERSION:-latest}
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABSE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    container_name: "${MYSQL_NAME}"
+
+  mailcatcher:
+    image: jeanberu/mailcatcher
+    networks:
+      - backend
+    environment:
+      SMTP_PORT: "${SMTP_PORT}"
+      HTTP_PORT: "${HTTP_PORT}"
+#  adminer:
+#    image: adminer
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - backend
+#    restart: always
+#    container_name: "${ADMINER_NAME}"
+
+networks:
+  backend:
+  frontend:

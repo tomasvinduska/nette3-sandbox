@@ -1,0 +1,9 @@
+tracy:
+#    strictMode: true
+    editor: 'phpstorm://open?file=%file&line=%line'
+    editorMapping:
+        /var/www/web: /Users/tomasvinduska/PhpstormProjects/b2b/
+
+services:
+   cache.storage: \Nette\Caching\Storages\DevNullStorage
+   tracy.logger: Tracy\Logger(%tempDir%)

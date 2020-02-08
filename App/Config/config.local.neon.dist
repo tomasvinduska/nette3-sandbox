@@ -1,0 +1,31 @@
+doctrine:
+	host: <host>
+	user: <user>
+	password: <pass>
+	dbname: <dbname>
+
+console:
+	url: <url>
+
+tracy:
+    bar:
+        - Nextras\MailPanel\MailPanel(%tempDir%/mail-panel-latte)
+
+services:
+    nette.mailer:
+        class: Nette\Mail\IMailer
+        factory: Nextras\MailPanel\FileMailer(%tempDir%/mail-panel-mails)
+
+parameters:
+    #Payment config for CSOB paygate
+    paygate:
+        default:
+            apiKey: 'xxxxxxx'
+            privatePersonalKey: '%appDir%/../local_files/rsa_xxxxxxx.key'
+            publicBankKey: '%appDir%/../local_files/mips_iplatebnibrana.csob.cz.pub'
+            apiUrl: 'https://iapi.iplatebnibrana.csob.cz/api/v1.6'
+        csob:
+            apiKey: 'yyyyyyy'
+            privatePersonalKey: '%appDir%/../local_files/rsa_yyyyyyy.key'
+            publicBankKey: '%appDir%/../local_files/mips_iplatebnibrana.csob.cz.pub'
+            apiUrl: 'https://iapi.iplatebnibrana.csob.cz/api/v1.6'
