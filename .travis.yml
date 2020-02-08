@@ -9,5 +9,6 @@ install:
 
 script:
   - composer syntax
+  - composer coding
 notifications:
   email: false
