@@ -2,6 +2,7 @@
 
 namespace App\Presenters;
 
+use App\Forms\BS4FormUtil;
 use Nette\Application\UI\Form;
 use Nette\SmartObject;
 
@@ -26,6 +27,7 @@ class HomepagePresenter extends BasePresenter
             $form->reset();
             $this->flashMessage('Vaše heslo bylo obnoveno');
         };
+        BS4FormUtil::decorate($form);
         return $form;
     }
 
