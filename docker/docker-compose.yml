@@ -33,29 +33,30 @@ services:
       - "80:80"
     container_name: "${NGINX_NAME}"
 
-  mysql:
-    image: percona:${MYSQL_VERSION:-latest}
-    restart: always
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./mysql:/var/lib/mysql
-    networks:
-      - backend
-    environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: "${MYSQL_DATABSE}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-    container_name: "${MYSQL_NAME}"
 
-  mailcatcher:
-    image: jeanberu/mailcatcher
-    networks:
-      - backend
-    environment:
-      SMTP_PORT: "${SMTP_PORT}"
-      HTTP_PORT: "${HTTP_PORT}"
+#  mysql:
+#    image: percona:${MYSQL_VERSION:-latest}
+#    restart: always
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - ./mysql:/var/lib/mysql
+#    networks:
+#      - backend
+#    environment:
+#      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+#      MYSQL_DATABASE: "${MYSQL_DATABSE}"
+#      MYSQL_USER: "${MYSQL_USER}"
+#      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+#    container_name: "${MYSQL_NAME}"
+
+#  mailcatcher:
+#    image: jeanberu/mailcatcher
+#    networks:
+#      - backend
+#    environment:
+#      SMTP_PORT: "${SMTP_PORT}"
+#      HTTP_PORT: "${HTTP_PORT}"
 #  adminer:
 #    image: adminer
 #    ports:
