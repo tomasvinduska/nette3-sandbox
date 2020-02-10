@@ -2,30 +2,48 @@
 
 namespace App\Presenters;
 
-use App\Forms\BS4FormUtil;
+use App\Components\SignForm;
 use Nette\Application\UI\Form;
+use Nette\DI\Container;
 
 class SignPresenter extends BasePresenter
 {
 
+    /** @var \App\Components\SignForm @inject */
+    public $annotationInject;
+
+    /**
+     * @var \App\Components\SignForm
+     */
+    private $injectUsingMethod;
+
+    /**
+     * @var \App\Components\SignForm
+     */
+    private $signForm;
+
+    public function __construct(Container $container, SignForm $signForm)
+    {
+        parent::__construct($container);
+        $this->signForm = $signForm;
+    }
+
+    public function actionResetPassword()
+    {
+    }
+
     public function createComponentResetPassword(): Form
     {
-        $form = new Form();
-//        $form->getElementPrototype()->class('ajax');
-        $form->addProtection('Vaše relace vypršela. Prosím, zkuste to znovu.');
-        $form->addText('email', 'E-mail')
-            ->addRule(Form::EMAIL, 'neplatný formát emailu')
-            ->setRequired('%label je povinný')
-            ->setHtmlAttribute('placeholder', 'napište e-mail');
-        $form->addSubmit('submit')
-            ->getControlPrototype()
-            ->setName('button')
-            ->setHtml('Obnovit heslo');
-        $form->onSuccess[] = function (Form $form, \stdClass $values): void {
+        $form = $this->signForm->resetPassword();
+        $form->onSuccess[] = function (Form $form): void {
             $form->reset();
             $this->flashMessage('Vaše heslo bylo obnoveno');
         };
-        BS4FormUtil::decorate($form);
         return $form;
+    }
+
+    public function injectSignForm(SignForm $signForm): void
+    {
+        $this->injectUsingMethod = $signForm;
     }
 }
