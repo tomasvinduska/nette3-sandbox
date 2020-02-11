@@ -6,3 +6,4 @@ nette3-sandbox
 [![Latest Stable Version](https://poser.pugx.org/tomasvinduska/nette3-sandbox/v/stable)](https://packagist.org/packages/tomasvinduska/nette3-sandbox)
 [![Build Status](https://travis-ci.org/tomasvinduska/nette3-sandbox.svg?branch=master)](https://travis-ci.org/tomasvinduska/nette3-sandbox)
 [![License](https://poser.pugx.org/tomasvinduska/nette3-sandbox/license)](https://packagist.org/packages/tomasvinduska/nette3-sandbox)
+..
