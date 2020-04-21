@@ -27,6 +27,10 @@ class HomepagePresenter extends BasePresenter
         $form->onSuccess[] = function (Form $form): void {
             $form->reset();
         };
+        $form->onError[] = function (Form $form): void {
+            $this->redrawControl(null);
+        };
+
         return $form;
     }
 
