@@ -35,7 +35,8 @@
     "nettrine/dbal": "^0.6.2",
     "nettrine/migrations": "^0.6.1",
     "contributte/monolog": "^0.4.1",
-    "nettrine/annotations": "^0.6.1"
+    "nettrine/annotations": "^0.6.1",
+    "ublaboo/datagrid": "^6.2"
   },
   "require-dev": {
     "tomasvinduska/coding-standard": "0.0.1"

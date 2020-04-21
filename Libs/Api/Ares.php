@@ -2,6 +2,7 @@
 
 namespace Libs\Api;
 
+/* old lib */
 class Ares
 {
     private string $ares_url = 'https://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=';
@@ -36,9 +37,11 @@ class Ares
                 'dic' => $this->getDicFromXML()?:'CZ'.$this->ic,
                 'form' => $this->getTextValueFromXML('D:KPF'),
                 'city' => $this->getTextValueFromXML('D:N'),
+                'district' => $this->getTextValueFromXML('D:NCO'),
                 'employee' => $this->getTextValueFromXML('D:KPP'),
                 'founded' => date('Y', strtotime($this->getTextValueFromXML('D:DV'))),
-                'postal' => $this->getIntValueFromXML('D:PSC')
+                'postal' => $this->getIntValueFromXML('D:PSC'),
+                'country' => $this->getTextValueFromXML('D:NS')
             );
         }
         return false;

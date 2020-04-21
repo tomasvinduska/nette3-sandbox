@@ -1,0 +1,9 @@
+{block detail}
+
+<h2>{$item->getIco()} - {$item->getCompanyName()}</h2>
+<ul class="list-group">
+    <li class="list-group-item">{$item->getAddress()->getAddress()}</li>
+    <li class="list-group-item">{$item->getAddress()->getDistrict()}</li>
+    <li class="list-group-item">{$item->getAddress()->getPostalCode()}</li>
+</ul>
+

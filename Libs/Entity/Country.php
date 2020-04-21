@@ -33,8 +33,40 @@ class Country
      *
      * @ORM\Column(name="last_update", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $lastUpdate = 'CURRENT_TIMESTAMP';
+    private $lastUpdate;
 
+    public function getCountryId(): int
+    {
+        return $this->countryId;
+    }
+
+    public function setCountryId(int $countryId): Country
+    {
+        $this->countryId = $countryId;
+        return $this;
+    }
+
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): Country
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    public function getLastUpdate(): \DateTime
+    {
+        return $this->lastUpdate;
+    }
+
+    public function setLastUpdate(\DateTime $lastUpdate): Country
+    {
+        $this->lastUpdate = $lastUpdate;
+        return $this;
+    }
 
 }
 

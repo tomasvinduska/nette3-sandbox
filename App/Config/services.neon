@@ -1,7 +1,11 @@
 services:
         ################ services ################
         router: App\Router\RouterFactory::createRouter
-        - App\Components\SignForm
+        - Libs\Repository\SearchResult
+        - Libs\Repository\Address
+        - Libs\Repository\City
+        - Libs\Repository\Country
+        - App\Components\SearchForm
 
         ConvertMappingCommand:
             class: Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand

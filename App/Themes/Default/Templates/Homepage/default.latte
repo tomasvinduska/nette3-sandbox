@@ -7,19 +7,23 @@
                 Hledani
             </div>
             <div class="card-body">
+                {snippet aresForm}
                 {control aresForm}
+                {/snippet}
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card">
             <div class="card-header">
-                Posledni hledani
+                Posledni 5 hledani
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                {snippet lastSearch}
+                    {foreach $searchResults as $searchResult}
+                        <li class="list-group-item">{$searchResult->getIco()} - {$searchResult->getCompanyName()}</li>
+                    {/foreach}
+                {/snippet}
             </ul>
             <div class="card-body text-right">
             <a n:href="Search:results" class="card-link">vice vysledku</a>

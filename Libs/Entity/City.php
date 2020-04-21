@@ -33,10 +33,10 @@ class City
      *
      * @ORM\Column(name="last_update", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $lastUpdate = 'CURRENT_TIMESTAMP';
+    private $lastUpdate;
 
     /**
-     * @var \Country
+     * @var \Libs\Entity\Country
      *
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumns({
@@ -44,6 +44,55 @@ class City
      * })
      */
     private $country;
+
+    public function __construct()
+    {
+        $this->lastUpdate = new \DateTime();
+    }
+
+    public function getCityId(): int
+    {
+        return $this->cityId;
+    }
+
+    public function setCityId(int $cityId): City
+    {
+        $this->cityId = $cityId;
+        return $this;
+    }
+
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): City
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    public function getLastUpdate(): \DateTime
+    {
+        return $this->lastUpdate;
+    }
+
+    public function setLastUpdate(\DateTime $lastUpdate): City
+    {
+        $this->lastUpdate = $lastUpdate;
+        return $this;
+    }
+
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(Country $country): City
+    {
+        $this->country = $country;
+        return $this;
+    }
 
 
 }

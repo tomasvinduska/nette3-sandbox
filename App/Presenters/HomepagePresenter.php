@@ -2,31 +2,36 @@
 
 namespace App\Presenters;
 
-use App\Components\BS4FormUtil;
-use Libs\Api\Ares;
+use App\Components\SearchForm;
+use Libs\Repository\SearchResult;
 use Nette\Application\UI\Form;
+use Nette\DI\Container;
 
 class HomepagePresenter extends BasePresenter
 {
 
+    private SearchResult $searchResultRepository;
+
+    private SearchForm $searchForm;
+
+    public function __construct(Container $container, SearchResult $searchResultRepository, SearchForm $searchForm)
+    {
+        parent::__construct($container);
+        $this->searchResultRepository = $searchResultRepository;
+        $this->searchForm = $searchForm;
+    }
+
     public function createComponentAresForm()
     {
-        $form = new Form();
-        //        $form->getElementPrototype()->class('ajax');
-        $form->addProtection('Vaše relace vypršela. Prosím, zkuste to znovu.');
-        $form->addText('ico', 'IČO')
-            ->addRule(Form::INTEGER, 'neplatný formát')
-            ->setRequired('%label je povinné')
-            ->setHtmlAttribute('placeholder', 'zadejte IČO');
-        $form->addSubmit('submit')
-            ->getControlPrototype()
-            ->setName('button')
-            ->setHtml('Vyhledat');
-        $form->onSuccess[] = function (Form $form): void {
-            $ares = new Ares($form->getValues()['ico']);
-//            dumpe($ares->getData());
+        $form = $this->searchForm->createForm();
+        $form->onSuccess[] = function (Form $form) {
+            $form->reset();
         };
-        BS4FormUtil::decorate($form);
         return $form;
+    }
+
+    public function renderDefault()
+    {
+        $this->template->searchResults = $this->searchResultRepository->findBy([], ['date' => 'DESC'], 5);
     }
 }
