@@ -44,8 +44,10 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - /private/var/mysql-data:/var/lib/mysql
-      - /private/var/mysql-log:/var/log/mysql
+      - ./mysql-data:/var/lib/mysql
+      - ./mysql-log:/var/log/mysql
+#      - /private/var/mysql-data:/var/lib/mysql
+#      - /private/var/mysql-log:/var/log/mysql
     networks:
       - backend
     environment:
