@@ -5,6 +5,7 @@ services:
       context: './php/'
       args:
         PHP_VERSION: ${PHP_VERSION}
+        XDEBUG: ${XDEBUG}
     networks:
       - backend
     volumes:
@@ -18,7 +19,11 @@ services:
       MAIL_USERNAME: "${MAIL_USERNAME}"
       MAIL_PASSWORD: "${MAIL_PASSWORD}"
       MAIL_SECURE: "${MAIL_SECURE}"
-
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_HOST: "${MYSQL_HOST}"
   nginx:
     image: nginx:${NGINX_VERSION:-latest}
     depends_on:
@@ -33,22 +38,23 @@ services:
       - "80:80"
     container_name: "${NGINX_NAME}"
 
+  mysql:
+    image: percona:${MYSQL_VERSION:-latest}
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - /private/var/mysql-data:/var/lib/mysql
+      - /private/var/mysql-log:/var/log/mysql
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    container_name: "${MYSQL_NAME}"
 
-#  mysql:
-#    image: percona:${MYSQL_VERSION:-latest}
-#    restart: always
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - ./mysql:/var/lib/mysql
-#    networks:
-#      - backend
-#    environment:
-#      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-#      MYSQL_DATABASE: "${MYSQL_DATABSE}"
-#      MYSQL_USER: "${MYSQL_USER}"
-#      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-#    container_name: "${MYSQL_NAME}"
 
 #  mailcatcher:
 #    image: jeanberu/mailcatcher
@@ -65,6 +71,14 @@ services:
 #      - backend
 #    restart: always
 #    container_name: "${ADMINER_NAME}"
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+    restart: always
+    container_name: "${ADMINER_NAME}"
 
 networks:
   backend:

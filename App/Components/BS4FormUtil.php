@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace App\Forms;
+namespace App\Components;
 
 use Nette\Application\UI\Form;
 use Nette\Forms\Controls\Checkbox;

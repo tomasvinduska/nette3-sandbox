@@ -2,3 +2,13 @@ services:
         ################ services ################
         router: App\Router\RouterFactory::createRouter
         - App\Components\SignForm
+
+        ConvertMappingCommand:
+            class: Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand
+            tags: [console.command: orm:convert-mapping]
+        ValidateSchemaCommand:
+            class: Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand
+            tags: [console.command: orm:validate-schema]
+        UpdateCommand:
+            class: Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand
+            tags: [console.command: orm:schema-tool:update]

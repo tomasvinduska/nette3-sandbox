@@ -14,7 +14,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.4",
     "nette/application": "^3.0",
     "nette/bootstrap": "^3.0",
     "nette/caching": "^3.0",
@@ -34,7 +34,8 @@
     "contributte/console": "^0.8.0",
     "nettrine/dbal": "^0.6.2",
     "nettrine/migrations": "^0.6.1",
-    "contributte/monolog": "^0.4.1"
+    "contributte/monolog": "^0.4.1",
+    "nettrine/annotations": "^0.6.1"
   },
   "require-dev": {
     "tomasvinduska/coding-standard": "0.0.1"

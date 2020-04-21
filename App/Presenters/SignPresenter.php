@@ -3,6 +3,7 @@
 namespace App\Presenters;
 
 use App\Components\SignForm;
+use Doctrine\ORM\EntityManager;
 use Nette\Application\UI\Form;
 use Nette\DI\Container;
 
@@ -21,6 +22,9 @@ class SignPresenter extends BasePresenter
      * @var \App\Components\SignForm
      */
     private $signForm;
+
+    /** @var \Doctrine\ORM\EntityManagerInterface @inject */
+    public $entityManager;
 
     public function __construct(Container $container, SignForm $signForm)
     {

@@ -9,8 +9,8 @@ application:
 		*: App\*Module\Presenters\*Presenter
 
 nettrine.orm:
-  configuration:
-    autoGenerateProxyClasses: %debugMode%
+    configuration:
+        autoGenerateProxyClasses: %debugMode%
 
 nettrine.dbal:
   debug:
@@ -18,10 +18,14 @@ nettrine.dbal:
     sourcePaths: [%appDir%]
   connection:
     host: ::getenv(MYSQL_HOST)
-    driver: pdo_mysqli
-    dbname: ::getenv(MYSQL_DATABSE)
+    driver: pdo_mysql
+    dbname: ::getenv(MYSQL_DATABASE)
     user: ::getenv(MYSQL_USER)
     password: ::getenv(MYSQL_PASSWORD)
+
+nettrine.orm.annotations:
+    paths:
+        - Libs
 
 migrations:
     table: doctrine_migrations # database table for applied migrations
@@ -44,6 +48,12 @@ decorator:
         tags: [kdyby.subscriber]
     Symfony\Component\Console\Command\Command:
         tags: [kdyby.console.command]
+
+console:
+    lazy: true
+    helpers:
+        - Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper
+        - Libs\Console\Helper\EntityManagerHelper
 
 session:
 	expiration: 14 days

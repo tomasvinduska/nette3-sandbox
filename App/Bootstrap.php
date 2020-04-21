@@ -29,10 +29,6 @@ class Bootstrap
         $configurator->setTimeZone('Europe/Prague');
         $configurator->setTempDirectory(__DIR__ . '/../temp');
 
-        $configurator->createRobotLoader()
-            ->addDirectory(__DIR__)
-            ->register();
-
         $configurator->addConfig(__DIR__ . '/Config/config.neon');
         $local_neon = __DIR__ . '/Config/config.local.neon';
         if (file_exists($local_neon)) {

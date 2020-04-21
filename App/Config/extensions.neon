@@ -3,6 +3,8 @@ extensions:
     nettrine.dbal: Nettrine\DBAL\DI\DbalExtension
     nettrine.cache: Nettrine\Cache\DI\CacheExtension
     nettrine.orm: Nettrine\ORM\DI\OrmExtension
+    nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
+    nettrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
     migrations: Nettrine\Migrations\DI\MigrationsExtension
 #    monolog: Contributte\Monolog\DI\MonologExtension
 
