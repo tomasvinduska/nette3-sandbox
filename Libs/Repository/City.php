@@ -21,4 +21,5 @@ class City extends EntityRepository
         $this->getEntityManager()->flush();
         return $city;
     }
+
 }

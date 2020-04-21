@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class City
 {
+
     /**
      * @var int
-     *
      * @ORM\Column(name="city_id", type="smallint", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -23,21 +23,18 @@ class City
 
     /**
      * @var string
-     *
      * @ORM\Column(name="city", type="string", length=50, nullable=false)
      */
     private $city;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="last_update", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $lastUpdate;
 
     /**
      * @var \Libs\Entity\Country
-     *
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="country_id", referencedColumnName="country_id")
@@ -94,6 +91,4 @@ class City
         return $this;
     }
 
-
 }
-

@@ -35,4 +35,5 @@ class SearchPresenter extends BasePresenter
         $grid->setItemsPerPageList([3]);
         return $grid;
     }
+
 }

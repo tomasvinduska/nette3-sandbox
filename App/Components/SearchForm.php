@@ -52,7 +52,7 @@ class SearchForm
         return $form;
     }
 
-    public function saveForm(Form $form)
+    public function saveForm(Form $form): void
     {
         $ico = $form->getValues()['ico'];
         $ares = new Ares($ico);
@@ -67,7 +67,7 @@ class SearchForm
 
                 $country = $this->getCountry($data['country']);
                 $city = $this->getCity($data['city'], $country);
-                $address = $this->getAddress($data['street'],$data['postal'],$data['district'],$city);
+                $address = $this->getAddress($data['street'], $data['postal'], $data['district'], $city);
                 $searchResult->setAddress($address);
             }
             $searchResult->setDate(new \DateTime());
@@ -97,11 +97,11 @@ class SearchForm
         return $city;
     }
 
-    private function getAddress(string $street,string $postal,string $district, \Libs\Entity\City $city)
+    private function getAddress(string $street, string $postal, string $district, \Libs\Entity\City $city)
     {
-        $address = $this->addressRepository->findOneBy(['address' => $street, 'postalCode' => $postal, 'city'=>$city,'district'=>$district]);
-        if ($address===null){
-            $address = $this->addressRepository->create($street,$postal,$district,$city);
+        $address = $this->addressRepository->findOneBy(['address' => $street, 'postalCode' => $postal, 'city' => $city, 'district' => $district]);
+        if ($address === null) {
+            $address = $this->addressRepository->create($street, $postal, $district, $city);
         }
         return $address;
     }

@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Migrations;
 
@@ -12,12 +10,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20200420231253 extends AbstractMigration
 {
-    public function getDescription() : string
+
+    public function getDescription(): string
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
@@ -29,7 +28,7 @@ final class Version20200420231253 extends AbstractMigration
         $this->addSql('ALTER TABLE address ADD CONSTRAINT FK_D4E6F818BAC62AF FOREIGN KEY (city_id) REFERENCES city (city_id)');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
@@ -40,4 +39,5 @@ final class Version20200420231253 extends AbstractMigration
         $this->addSql('DROP TABLE city');
         $this->addSql('DROP TABLE address');
     }
+
 }

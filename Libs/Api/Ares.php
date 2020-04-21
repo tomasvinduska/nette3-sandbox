@@ -1,5 +1,5 @@
 <?php declare(strict_types = 1);
-
+// phpcs:ignoreFile -- this is not a core file
 namespace Libs\Api;
 
 /* old lib */

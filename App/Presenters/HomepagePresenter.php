@@ -24,14 +24,15 @@ class HomepagePresenter extends BasePresenter
     public function createComponentAresForm()
     {
         $form = $this->searchForm->createForm();
-        $form->onSuccess[] = function (Form $form) {
+        $form->onSuccess[] = function (Form $form): void {
             $form->reset();
         };
         return $form;
     }
 
-    public function renderDefault()
+    public function renderDefault(): void
     {
         $this->template->searchResults = $this->searchResultRepository->findBy([], ['date' => 'DESC'], 5);
     }
+
 }

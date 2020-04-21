@@ -13,7 +13,7 @@ class Address extends EntityRepository
         parent::__construct($em, $em->getClassMetadata(\Libs\Entity\Address::class));
     }
 
-    public function create(string $street, string $postal,string $district, \Libs\Entity\City $city)
+    public function create(string $street, string $postal, string $district, \Libs\Entity\City $city)
     {
         $address = new \Libs\Entity\Address();
         $address->setAddress($street)->setPostalCode($postal)->setCity($city)->setDistrict($district);
@@ -21,4 +21,5 @@ class Address extends EntityRepository
         $this->getEntityManager()->flush();
         return $address;
     }
+
 }

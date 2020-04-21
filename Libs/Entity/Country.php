@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Country
 {
+
     /**
      * @var int
-     *
      * @ORM\Column(name="country_id", type="smallint", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -23,14 +23,12 @@ class Country
 
     /**
      * @var string
-     *
      * @ORM\Column(name="country", type="string", length=50, nullable=false)
      */
     private $country;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="last_update", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $lastUpdate;
@@ -69,4 +67,3 @@ class Country
     }
 
 }
-

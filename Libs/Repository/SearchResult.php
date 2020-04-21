@@ -14,7 +14,7 @@ class SearchResult extends EntityRepository
         parent::__construct($em, $em->getClassMetadata(SearchResults::class));
     }
 
-    public function save(SearchResults $searchResult)
+    public function save(SearchResults $searchResult): void
     {
         $this->getEntityManager()->persist($searchResult);
         $this->getEntityManager()->flush();

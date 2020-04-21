@@ -35,7 +35,6 @@ class SearchResults
 
     /**
      * @var \Libs\Entity\Address
-     *
      * @ORM\ManyToOne(targetEntity="Address")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="address_id", referencedColumnName="address_id")
